@@ -3,13 +3,15 @@ from ultralytics import YOLO
 import PIL
 import helper
 import setting
+import torch
+from functools import partial
 
 def main():
     """
     Main function for the Streamlit app.
     """
     setting.configure_page()
-
+    torch.load = partial(torch.load, weights_only=False)
     # Creating sidebar
     with st.sidebar:
         st.header("Image Configuration")     # Adding header to sidebar
@@ -69,3 +71,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
